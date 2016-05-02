@@ -14,6 +14,8 @@ public class MovieItem implements Parcelable {
     private String rate ;
     private String movieId ;
     private String trailerId ;
+    private String backdropPath ;
+
 
     public  MovieItem(){}
     protected MovieItem(Parcel in) {
@@ -27,6 +29,7 @@ public class MovieItem implements Parcelable {
         rate = in.readString();
         movieId = in.readString();
         trailerId = in.readString();
+        backdropPath= in.readString();
     }
 
     public static final Creator<MovieItem> CREATOR = new Creator<MovieItem>() {
@@ -40,6 +43,14 @@ public class MovieItem implements Parcelable {
             return new MovieItem[size];
         }
     };
+
+    public String getBackdropPath() {
+        return backdropPath;
+    }
+
+    public void setBackdropPath(String backdropPath) {
+        this.backdropPath = backdropPath;
+    }
 
     public String getTrailerId() {
 
@@ -162,5 +173,6 @@ public class MovieItem implements Parcelable {
         out.writeString(rate);
         out.writeString(movieId);
         out.writeString(trailerId);
+        out.writeString(backdropPath);
     }
 }

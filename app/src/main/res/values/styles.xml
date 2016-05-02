@@ -13,12 +13,14 @@
             <item name="android:windowBackground">@color/custom_theme_color</item>
         </style>
 
-    <style name="ThemeName" parent="@style/Theme.AppCompat.Light">
+
+    <style name="ThemeName" parent="@android:style/Widget.Holo.Light.ActionBar.Solid">
         <item name="actionMenuTextColor">@color/colorAccent</item>
         <item name="android:actionMenuTextColor">@color/colorAccent</item>
         <item name="android:textAppearance">@android:style/TextAppearance.Medium</item>
         <item name="android:textSize">5sp</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorAccent</item>
     </style>
 
 

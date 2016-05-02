@@ -4,9 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/scrollViewActivity"
-    android:paddingLeft="16dp"
     android:paddingBottom="16dp"
-    android:paddingRight="16dp"
     android:fillViewport="true"
     android:layout_alignParentLeft="true"
     android:layout_alignParentStart="true" >
@@ -18,31 +16,57 @@
         android:orientation="vertical"
         tools:context="com.example.kemos.fainalmoviemalapp.Controller.DetailActivity">
 
-        <RelativeLayout
-            android:layout_height="0dp"
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_weight="3">
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:id="@+id/backdrop"  />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp" >
+
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content" >
-
+              <FrameLayout
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1">
                 <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
                     android:id="@+id/poster"
                     android:scaleType="fitXY"
                     android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true" />
+                    android:layout_alignParentLeft="true"
+                    android:background="#2d3580"
+                    android:padding="7dp" />
 
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
+                    android:textSize="10sp"
+                    android:layout_gravity="bottom"
+                    android:textColor="@android:color/white"
+                    android:background="#55000000"
+                    />
+                </FrameLayout>
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/poster"
-                    android:layout_centerHorizontal="true"
+                    android:layout_toEndOf="@+id/poster"
                     android:paddingLeft="16dp"
                     android:paddingTop="16dp">
 
@@ -103,7 +127,9 @@
         <RelativeLayout
             android:layout_height="0dp"
             android:layout_width="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -124,7 +150,9 @@
         <RelativeLayout
             android:layout_height="0dp"
             android:layout_width="match_parent"
-            android:layout_weight="2">
+            android:layout_weight="2"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
             <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"

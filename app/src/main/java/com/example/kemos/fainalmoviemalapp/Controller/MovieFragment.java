@@ -79,6 +79,10 @@ public class MovieFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 curPosition = position ;
+                chosen = true ;
+                if (movieItemArray.size() == 0 )
+                movieItemArray = movieTask.getMovieDataArray();
+
                 if (detailFragment != null && movieItemArray.size() != 0) {
 
                     detailFragment.setMovieItem(movieItemArray.get(position));
@@ -108,17 +112,15 @@ public class MovieFragment extends Fragment {
             @Override
             public void run() {
             //    Log.d("TimerExample", "Going for... " + chosen);
-                if ( movieTask.getMovieDataArray() != null)
+                if ( movieTask.getMovieDataArray() != null) {
                     movieItemArray = movieTask.getMovieDataArray();
+                    chosen = true;
 
-
-                if ( movieItemArray.size() > 0 ) {
+                }
+                if (detailFragment != null && movieItemArray.size() > 0 ) {
 
                     detailFragment.setMovieItem(movieItemArray.get(0));
-                        getActivity().setTitle(movieItemArray.get(0).getTitle() + " ("
-                                + movieItemArray.get(0).getDate().substring(0, 4) + ")");
                         chosen = true;
-
                 }
 
                 if (!chosen)
@@ -140,25 +142,31 @@ public class MovieFragment extends Fragment {
             String MOVIE_BASE_URL = "http://api.themoviedb.org/3/movie/popular?";
             movieTask = new FetchMovieTask(getActivity(), MOVIE_BASE_URL, MOVIE_DATA, gridview);
             movieTask.execute();
-            if (detailFragment != null)
-                delay();
+            delay();
         }
         else if ( choice.equals("TopRated")){
 
             String MOVIE_BASE_URL = "http://api.themoviedb.org/3/movie/top_rated?";
             movieTask = new FetchMovieTask(getActivity(), MOVIE_BASE_URL, MOVIE_DATA, gridview);
             movieTask.execute();
-            if (detailFragment != null)
-                delay();
+            delay();
         }
         else if ( choice.equals("Favorites")) {
             movieItemArray = movieDBOperation.getFavoritesMovies();
             gridview.setAdapter(new CustomGridAdapter(getActivity() ,movieItemArray ));
+            if ( detailFragment != null ) {
+                detailFragment.setMovieItem(movieItemArray.get(0));
+                chosen = true;
+            }
         }
         else if ( choice.equals("WatchList")){
             movieItemArray = movieDBOperation.getWatchList();
-        gridview.setAdapter(new CustomGridAdapter(getActivity() ,movieItemArray ));
-    }
+            gridview.setAdapter(new CustomGridAdapter(getActivity() ,movieItemArray ));
+            if ( detailFragment != null ) {
+                detailFragment.setMovieItem(movieItemArray.get(0));
+                chosen = true;
+            }
+        }
 
     }
 

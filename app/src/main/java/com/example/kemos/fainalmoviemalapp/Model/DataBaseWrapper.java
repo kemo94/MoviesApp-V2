@@ -13,9 +13,10 @@ public class DataBaseWrapper extends SQLiteOpenHelper {
     public static final String Movie_DATE = "date";
     public static final String Movie_OVERVIEW = "overview";
     public static final String Movie_RATE = "rate";
+    public static final String Movie_BACKDROP_PATH = "backdropPath";
     public static final String Movie_FAVORITES = "favorite";
     public static final String Movie_WATCH_LIST = "watchlist";
-    private static final String DATABASE_NAME = "Movies.db";
+    private static final String DATABASE_NAME = "Movies1.db";
 
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_CREATE = "create table " + Movies
@@ -26,6 +27,7 @@ public class DataBaseWrapper extends SQLiteOpenHelper {
             + Movie_DATE + " text not null, "
             + Movie_RATE + " text not null, "
             + Movie_OVERVIEW + " text not null, "
+            + Movie_BACKDROP_PATH + " text not null, "
             + Movie_FAVORITES + " boolean , "
             + Movie_WATCH_LIST + " boolean  );" ;
 

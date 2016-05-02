@@ -11,20 +11,31 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.kemos.fainalmoviemalapp.Model.MovieOperations;
 import com.example.kemos.fainalmoviemalapp.R;
 import com.example.kemos.fainalmoviemalapp.Utility;
+
+import java.sql.SQLException;
 
 
 public class MainActivity extends AppCompatActivity {
 
     SharedPreferences sharedpreferences;
     SharedPreferences.Editor editor ;
+    private MovieOperations movieDBOperation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         sharedpreferences = getSharedPreferences(Utility.MyPREFERENCES, Context.MODE_PRIVATE);
         editor = sharedpreferences.edit();
+
+        movieDBOperation = new MovieOperations(getApplicationContext());
+        try {
+            movieDBOperation.open();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         if ( savedInstanceState != null )
             setContentView(R.layout.activity_main);
@@ -68,10 +79,18 @@ public class MainActivity extends AppCompatActivity {
             editor.putString("Choice", "Popular");
         if (id == R.id.action_top_rated)
             editor.putString("Choice", "TopRated");
-            if (id == R.id.action_favorites)
-            editor.putString("Choice", "Favorites");
-        if (id == R.id.action_watch_list)
+            if (id == R.id.action_favorites) {
+                if ( movieDBOperation.getFavoritesMovies().size() != 0 )
+                editor.putString("Choice", "Favorites");
+                else
+                    Toast.makeText(this,R.string.no_favorites , Toast.LENGTH_LONG).show();
+            }
+        if (id == R.id.action_watch_list) {
+            if ( movieDBOperation.getWatchList().size() != 0 )
             editor.putString("Choice", "WatchList");
+            else
+                Toast.makeText(this,R.string.no_watch_list , Toast.LENGTH_LONG).show();
+        }
 
 
         editor.commit();

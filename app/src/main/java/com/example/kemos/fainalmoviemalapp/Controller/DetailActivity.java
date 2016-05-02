@@ -27,7 +27,6 @@ public class DetailActivity extends AppCompatActivity {
         extras = getIntent().getExtras();
          if ( extras != null ) {
              MovieItem movieItem  =  extras.getParcelable("movieItem");
-             setTitle(movieItem.getTitle() + " (" + movieItem.getDate().substring(0,4) + ")");
 
              MovieDetailFragment movieDetailFragment = (MovieDetailFragment) getSupportFragmentManager().findFragmentById(R.id.movie_detail);
              movieDetailFragment.setMovieItem(movieItem);

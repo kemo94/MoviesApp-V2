@@ -120,6 +120,7 @@ public class FetchMovieTask extends AsyncTask<Void, Void, ArrayList<MovieItem>> 
         final String TMD_ID = "id";
         final String TMD_RATE = "vote_average";
         final String TMD_DATE = "release_date";
+        final String TMD_BACKDROP_PATH = "backdrop_path";
         final String TMD_TOTAL_RESULT = "total_results";
 
 
@@ -139,6 +140,7 @@ public class FetchMovieTask extends AsyncTask<Void, Void, ArrayList<MovieItem>> 
             String id = movieInfo.getString(TMD_ID);
             String rate = movieInfo.getString(TMD_RATE);
             String date = movieInfo.getString(TMD_DATE);
+            String backdropPath = movieInfo.getString(TMD_BACKDROP_PATH);
 
             movieItemObject.setPosterURL( posters);
             movieItemObject.setRate( rate);
@@ -146,6 +148,7 @@ public class FetchMovieTask extends AsyncTask<Void, Void, ArrayList<MovieItem>> 
             movieItemObject.setMovieId( id);
             movieItemObject.setOverview(overview);
             movieItemObject.setTitle( title);
+            movieItemObject.setBackdropPath( backdropPath);
 
 
             movieDataArray.add(movieItemObject);

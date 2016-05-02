@@ -22,16 +22,13 @@ import java.text.DecimalFormat;
 public class MovieDetailFragment extends Fragment  {
 
     private MovieOperations movieDBOperation;
-    ImageView moviePoster ;
-    TextView overView;
-    TextView rate;
+    ImageView moviePoster , backdrop;
+    TextView overView , title , rate;
     RatingBar rating;
     MovieItem movieItem ;
     Float ratingValue;
-    ImageButton btnAddFavorite;
-    ImageButton btnAddWatchList;
-    int isFavorite;
-    int isWatchList ;
+    ImageButton btnAddFavorite , btnAddWatchList;
+    int isFavorite , isWatchList ;
    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,6 +93,8 @@ public class MovieDetailFragment extends Fragment  {
         rating = (RatingBar) rootView.findViewById(R.id.ratingBar);
         overView = (TextView) rootView.findViewById(R.id.overview);
         rate = (TextView) rootView.findViewById(R.id.rate);
+        title = (TextView) rootView.findViewById(R.id.title);
+        backdrop = (ImageView) rootView.findViewById(R.id.backdrop);
 
         if ( movieItem != null )
             setMovieDataOnView();
@@ -132,12 +131,15 @@ public class MovieDetailFragment extends Fragment  {
         rate.setText("Rate : " + new DecimalFormat("#.##").format(ratingValue) + "/5");
         String poster = movieItem.getPosterURL();
         String URL = "http://image.tmdb.org/t/p/w185" + poster;
+        String backdropPath = "http://image.tmdb.org/t/p/original" + movieItem.getBackdropPath();
         int screenHeight = getResources().getDisplayMetrics().heightPixels;
         int screenWidth = getResources().getDisplayMetrics().widthPixels;
 
 
-        Picasso.with(getActivity()).load(URL).placeholder(R.drawable.load).resize(screenWidth/2,screenHeight/2).into(moviePoster);
+        Picasso.with(getActivity()).load(backdropPath).placeholder(R.drawable.load).resize(screenWidth,screenHeight/3).into(backdrop);
+        Picasso.with(getActivity()).load(URL).placeholder(R.drawable.load).resize(screenWidth/3,screenHeight/3).into(moviePoster);
         overView.setText(movieItem.getOverview());
+        title.setText(movieItem.getTitle());
 
     }
 

@@ -5,18 +5,18 @@
 
     <item android:id="@+id/action_pop" android:title="@string/action_pop"
         android:orderInCategory="100" app:showAsAction="always"
-        android:theme="@style/CustomDialogTheme"/>
+        android:theme="@style/ThemeName"/>
 
     <item android:id="@+id/action_top_rated" android:title="@string/action_top_rated"
         android:orderInCategory="100" app:showAsAction="always"
         android:theme="@style/ThemeName"/>
     <item android:id="@+id/action_favorites" android:title="@string/action_favorites"
         android:orderInCategory="100" app:showAsAction="always"
-        android:theme="@style/CustomDialogTheme" />
+        android:theme="@style/ThemeName" />
 
     <item android:id="@+id/action_watch_list" android:title="@string/action_watch_list"
         android:orderInCategory="100" app:showAsAction="always"
-        android:theme="@style/CustomDialogTheme"/>
+        android:theme="@style/ThemeName"/>
 
 
 
